@@ -1,18 +1,19 @@
 #record custom functions for displaying
 $sysfunctions = gci function:
 function myfunctions {gci function: | where {$sysfunctions -notcontains $_} | where {$_.Source -eq ""}}
+
 #Customize powershell UI
 $Shell = $Host.UI.RawUI
 $size = $Shell.WindowSize
-$size.width=164
+$size.width=255
 $size.height=50
 $Shell.WindowSize = $size
 # $size = $Shell.BufferSize
 # $size.width=70
 # $size.height=5000
 # $Shell.BufferSize = $size
-# $shell.BackgroundColor = “Blue”
-# $shell.ForegroundColor = “White”
+ $Shell.BackgroundColor = 'Black'
+# $shell.ForegroundColor = ï¿½Whiteï¿½
 
 #Get VS Commands like msbuild in powershell
 pushd 'C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools'    
@@ -26,6 +27,10 @@ popd
 write-host "`nVisual Studio 2015 Command Prompt variables set." -ForegroundColor Yellow
 #Load additional scripts
 . D:\GihubPowerShellScripts\powershellFunctions.ps1
+if([System.IO.File]::Exists("D:\GihubPowerShellScripts\WorkPowerShellScript.ps1"))
+{
+  . D:\GihubPowerShellScripts\WorkPowerShellScript.ps1
+}
 #Display custom functions
 Write-Host "Custom functions:"
 myfunctions
