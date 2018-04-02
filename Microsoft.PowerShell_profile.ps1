@@ -27,10 +27,13 @@ popd
 write-host "`nVisual Studio 2015 Command Prompt variables set." -ForegroundColor Yellow
 #Load additional scripts
 . D:\GihubPowerShellScripts\powershellFunctions.ps1
-if([System.IO.File]::Exists("D:\GihubPowerShellScripts\WorkPowerShellScript.ps1"))
+if([System.IO.File]::Exists("D:\GihubPowerShellScripts\WorkPowerShellScripts.ps1"))
 {
-  . D:\GihubPowerShellScripts\WorkPowerShellScript.ps1
+  . D:\GihubPowerShellScripts\WorkPowerShellScripts.ps1
 }
+#Set the MACHINE_STORAGE_PATH for docker-machine
+$env:MACHINE_STORAGE_PATH = "D:\DockerImages\machine\"
+
 #Display custom functions
 Write-Host "Custom functions:"
 myfunctions
